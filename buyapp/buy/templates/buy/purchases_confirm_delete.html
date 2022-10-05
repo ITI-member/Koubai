@@ -1,0 +1,66 @@
+{% extends 'buy/base.html' %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href={% static 'css/dept_confirm_delete.css' %}>
+{% endblock  %}
+{% block title %}購入実績削除{% endblock  %}
+{% block content %}
+<div class="position">
+    <div class="junior">
+    <form action="" method="POST">
+        <table class="table">
+            <tr>
+                <th>購入先</th>
+                <td>{{ purchases.store }}</td>
+            </tr>
+            <tr>
+                <th>商品名</th>
+                <td>{{ purchases.item_name }}</td>
+            </tr>
+            <tr>
+                <th>部署名</th>
+                <td>{{ purchases.dept }}</td>
+            </tr>
+            <tr>
+                <th>購入日</th>
+                <td>{{ purchases.order_day }}</td>
+            </tr>
+            <tr>
+                <th>単価</th>
+                <td>{{ purchases.unit_prise }}</td>
+            </tr>
+            <tr>
+                <th>数量</th>
+                <td>{{ purchases.quantity }}</td>
+            </tr>
+            <tr>
+                <th>合計</th>
+                <td>{{ purchases.total_due }}</td>
+            </tr>
+            <tr>
+                <th>担当者</th>
+                {% if purchases.user_id != null %}
+                <td>{{ purchases.user_id }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>備考</th>
+                {% if purchases.remarks != null %}
+                <td>{{ purchases.remarks }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+        </table>
+        <div class="button">
+        <p>こちらのデータを削除します</p>
+        <button type="submit" class="btn btn-outline-danger">削除</button>
+        </div>
+        {% csrf_token %}
+    </form>
+    </div>
+</div>
+
+{% endblock  %}

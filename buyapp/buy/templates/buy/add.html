@@ -1,0 +1,77 @@
+{% extends 'buy/base.html' %}
+{% load widget_tweaks %}
+{% block title %}登録画面{% endblock  %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+{% endblock  %}
+{% block content %}
+<br>
+<div class="appname">
+    <h2>登録画面</h2>
+</div>
+<br>
+<div class=' WriteBox'>
+    <form action='' method='POST'>
+        <div class='Store'>
+            <label class='need' name="store">購入先</label><br>
+            {{ form.store }}
+        </div><br>
+
+        <div class='ItemColumn'>
+            <label class='need'>商品名</label><br>
+            {{ form.item_name }}
+            <datalist id="item">
+            {% for ListOfPurchases in item %}
+            <option value="{{ ListOfPurchases.item_name }}"></option>
+            {% endfor %}
+            </datalist>
+        </div><br>
+
+        <div class='DeptColumn'>
+            <label class='need' name="dept">部署名</label><br>
+            {{ form.dept }}
+        </div><br>
+
+        <div class='DayColumn'>
+            <label for='DayBox'>購入日</label><br>
+            {{ form.order_day|add_class:'DayBox' }}
+        </div><br>
+
+        <div class='CostColumnBox'>
+            <div class 'CostColumn'>
+                <label class='need'>単価</label><br>
+                {{ form.unit_prise|add_class:'cost' }}
+            </div>
+            <div class='box'> </div>
+            <div class='CountColumn'>
+                <label class='need'>数量</label><br>
+                {{ form.quantity|add_class:'count' }}
+            </div>
+            <div class='box'> </div>
+            <div class='TotalColumn'>
+                <label for='TotalBox'>合計</label><br>
+                {{ form.total_due|add_class:'total' }}
+            </div>
+        </div><br>
+
+        <div class='UserColumn'>
+            <label for='UserBox'>担当者</label><br>
+            {{ form.user_id }}
+        </div><br>
+
+        <div class='RemarksColumn'>
+            <label for='RemarksBox'>備考</label><br>
+            {{ form.remarks|add_class:'Remarks' }}
+        </div><br>
+
+        <div class='button013'>
+            <button type="submit" class='Add_List'>登録</button>
+        </div>
+        <br>
+        {% csrf_token %}
+    </form>
+</div>
+
+
+{% endblock  %}

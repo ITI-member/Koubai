@@ -7,15 +7,17 @@
 {% block title %}トップページ{% endblock  %}
 {% block content %}
 <br>
-<div class="appname">
-  <h2>Purchasing Management System</h2>
+<div class="appname-position">
+  <div class="appname">
+    <h2>Purchasing Management System</h2>
+  </div>
 </div>
 <br>
 <nav class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">先月</a>
     <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">今月</a>
     <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">来月</a>
-  </nav>
+</nav>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <table class="table table-striped">
@@ -23,30 +25,21 @@
               <tr>
                 <th scope="col">商品名</th>
                 <th scope="col">購入部署</th>
-                <th scope="col">最終購入日</th>
-                <th scope="col">平均購入周期</th>
+                <th scope="col">購入周期</th>
+                <th scope="col">次回購入日</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-
-              </tr>
+              {% for before_month in before %}
+              <div class="before_month">
+                <tr>
+                  <td>{{ before_month.0}}</td>
+                  <td>{{ before_month.1 }}</td>
+                  <td>{{ before_month.2}}</td>
+                  <td>{{ before_month.3}}</td>
+                </tr>
+              </div>
+              {% endfor %}
             </tbody>
           </table>
     </div>
@@ -61,25 +54,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-
-              </tr>
+              {% for now_month in now %}
+              <div class="now_month">
+                <tr>
+                  <td>{{ now_month.0}}</td>
+                  <td>{{ now_month.1 }}</td>
+                  <td>{{ now_month.2}}</td>
+                  <td>{{ now_month.3}}</td>
+                </tr>
+              </div>
+              {% endfor %}
             </tbody>
           </table>
     </div>
@@ -94,25 +78,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-
-              </tr>
+              {% for next_month in next %}
+              <div class="next_month">
+                <tr>
+                  <td>{{ next_month.0 }}</td>
+                  <td>{{ next_month.1 }}</td>
+                  <td>{{ next_month.2 }}</td>
+                  <td>{{ next_month.3 }}</td>
+                </tr>
+              </div>
+              {% endfor %}
             </tbody>
           </table>
     </div>

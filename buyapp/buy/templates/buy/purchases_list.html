@@ -1,0 +1,81 @@
+{% extends 'buy/base.html' %}
+{% block title %}購入実績一覧{% endblock  %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/purchases.css' %}">
+{% endblock  %}
+{% block header %}
+<a class="btn btn-outline-success" href="{% url 'buy:xlsx' %}">Excel出力</a>
+{% endblock  %}
+{% block content %}
+<br>
+<br>
+  <div class="search-div">
+    <div class="search-content">
+      <form class="d-flex" action="" method="GET">
+          <select class="form-select" aria-label="Default select" name="keyword">
+            <option value="">部署選択　</option>
+            {% for ListOfPurchases in dept_list  %}
+            <option >{{ ListOfPurchases.dept}}</option>
+            {% endfor %}
+          </select>
+          <select class="form-select" aria-label="Default select" name="keyword">
+            <option value="">購入先選択</option>
+            {% for ListOfPurchases in store_list  %}
+            <option >{{ ListOfPurchases.place}}</option>
+            {% endfor %}
+          </select>
+          <input class="range form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+<div class="dept-list">
+    <table class="list">
+        <thead>
+          <tr>
+            <th class="dept" scope="col" style="background-color: #e3f2fd;">購入部署</th>
+            <th class="day" scope="col" style="background-color: #e3f2fd;">注文日</th>
+            <th class="store" scope="col" style="background-color: #e3f2fd;">購入先</th>
+            <th class="item" scope="col" style="background-color: #e3f2fd;">購入品</th>
+            <th class="unit" scope="col" style="background-color: #e3f2fd;">単価</th>
+            <th class="kazu" scope="col" style="background-color: #e3f2fd;">数量</th>
+            <th class="due" scope="col" style="background-color: #e3f2fd;">金額</th>
+            <th class="user" scope="col" style="background-color: #e3f2fd;">担当者</th>
+            <th class="remarks" scope="col" style="background-color: #e3f2fd;">備考</th>
+            <th class="button button-position" scope="col"style="background-color: #e3f2fd;"></th>
+            <th class="button button-position" scope="col"style="background-color: #e3f2fd;"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for ListOfPurchases in list %}
+        <div class="row">
+          <tr>
+            <td>{{ ListOfPurchases.dept }}</td>
+            <td>{{ ListOfPurchases.order_day }}</td>
+            <td>{{ ListOfPurchases.store }}</td>
+            <td class="items" title="{{ ListOfPurchases.item_name }}">{{ ListOfPurchases.item_name }}</td>
+            <td>{{ ListOfPurchases.unit_prise }}</td>
+            <td>{{ ListOfPurchases.quantity }}</td>
+            <td>{{ ListOfPurchases.total_due }}</td>
+            {% if ListOfPurchases.user_id != null %}
+            <td>{{ ListOfPurchases.user_id }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            {% if ListOfPurchases.remarks != null %}
+            <td class="remarkss" class=""title="{{ ListOfPurchases.remarks }}">{{ ListOfPurchases.remarks }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td><a class="position btn btn-outline-primary btn-sm" href="{% url 'buy:purchasesup' ListOfPurchases.pk %}">編集</a></td>
+            <td><a class="position btn btn-outline-danger btn-sm" href="{% url 'buy:purchasesdelete' ListOfPurchases.pk %}">削除</a></td>
+          </tr>
+        </div>
+        {% endfor %}
+      </table>
+</div>
+  
+
+{% endblock  %}
+

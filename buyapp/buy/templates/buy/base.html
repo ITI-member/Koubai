@@ -10,36 +10,40 @@
     <title>{% block title %}{% endblock  %}</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'buy:index' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'buy:purchases' %}">購入実績一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'buy:add' %}">登録画面</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'buy:dept' %}">部署マスタ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'buy:place' %}">購入先マスタ</a>
+            </li>
+            <li class="nav-item">
+            </li>
+          </ul>
+          {% block header %}
+          {% endblock  %}
+          </div>
+      </div>
+    </nav>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'buy:index' %}">Home</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">購入実績一覧</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">登録画面</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'buy:dept' %}">部署マスタ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">購入先マスタ</a>
-                  </li>
-                  <li class="nav-item">
-                  </li>
-                </ul>
-                {% block header %}
-                {% endblock  %}
-                  <a class="btn btn-outline-success" href="#">CSV出力</a>
-              </div>
-            </div>
-          </nav>
+      {% for message in messages %}
+      <div {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+      {{ message }}
+      </div>
+      {% endfor %}
     {% block content %}
     {% endblock  %}
     </div>
@@ -49,3 +53,4 @@
 
   </body>
 </html>
+

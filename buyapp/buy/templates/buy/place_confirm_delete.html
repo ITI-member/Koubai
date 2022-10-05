@@ -1,0 +1,38 @@
+{% extends 'buy/base.html' %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href={% static 'css/dept_confirm_delete.css' %}>
+{% endblock  %}
+{% block title %}購入先削除{% endblock  %}
+{% block content %}
+<div class="position">
+    <div class="junior">
+    <form action="" method="POST">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <td>{{ place.store_id }}</td>
+            </tr>
+            <tr>
+                <th>部署名</th>
+                <td>{{ place.place }}</td>
+            </tr>
+            <tr>
+                <th>備考</th>
+                {% if place.note != null %}
+                <td>{{ place.note }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+        </table>
+        <div class="button">
+        <p>こちらのデータを削除します</p>
+        <button type="submit" class="btn btn-outline-danger">削除</button>
+        </div>
+        {% csrf_token %}
+    </form>
+    </div>
+</div>
+
+{% endblock  %}

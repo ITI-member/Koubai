@@ -1,0 +1,35 @@
+{% extends 'buy/base.html' %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href={% static 'css/dept_form.css' %}>
+{% endblock  %}
+{% block title %}部署追加/編集{% endblock  %}
+{% block content %}
+<div class="position">
+    <form action="" method="POST">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                {% if func == 'deptadd' %}
+                <td>{{ form.dept_id }}</td>
+                {% else %}
+                <td>{{ form.dept_id }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>部署名</th>
+                <td>{{ form.dept }}</td>
+            </tr>
+            <tr>
+                <th>備考</th>
+                <td>{{ form.note }}</td>
+            </tr>
+        </table>
+        <div class="button">
+        <button type="submit" class="btn btn-outline-primary">送信</button>
+        </div>
+        {% csrf_token %}
+    </form>
+</div>
+
+{% endblock  %}

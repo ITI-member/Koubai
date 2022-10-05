@@ -1,0 +1,24 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+<h1>投稿一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>comment</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for day in day_list  %}
+<!-- .table-{color} can be use with .table, thead, tbody, tr, th and td -->
+  <tr>
+    <td>{{ day.title }}</td>
+    <td>{{ day.text }}</td>
+    <td>{{ day.date }}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock  %}

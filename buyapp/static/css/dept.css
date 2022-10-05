@@ -1,6 +1,9 @@
+.appname-position {
+    display: flex;
+    justify-content: center;
+}
 .appname {
     font-family: "Courier New";
-    text-align: center;
     color: black;
     margin: 20px 0px 20px;
     text-shadow: 1px 2px 3px black;
@@ -9,3 +12,30 @@
 .btn {
     margin-right: 10px;
 }
+
+.position{   
+    min-width: 70px;
+}
+
+.dept-list{
+    scrollbar-width: none; /*Firefox対応のスクロールバー非表示コード*/  
+    -ms-overflow-style: none;/*Internet Explore対応のスクロールバー非表示コード*/   
+    text-align: center;
+    overflow-y: scroll;
+    height: 330px;
+}
+
+.dept-list::-webkit-scrollbar {  
+    display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
+  }
+
+.button-position{
+    width: 50px;
+}
+
+th{
+    position: sticky;
+    top: 0;
+    
+}
+

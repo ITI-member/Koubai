@@ -1,0 +1,49 @@
+{% extends 'buy/base.html' %}
+{% block title %}購入先マスタ{% endblock  %}
+{% block extracss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dept.css' %}">
+{% endblock  %}
+{% block header %}
+<a href="{% url 'buy:placeadd' %}" class="btn btn-outline-primary">追加</a>
+{% endblock  %}
+{% block content %}
+<br>
+<div class="appname-position">
+    <div class="appname">
+        <h2>購入先マスタ</h2>
+    </div>
+</div>
+<br>
+
+<div class="dept-list">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col" style="background-color: #e3f2fd;">ID</th>
+            <th scope="col" style="background-color: #e3f2fd;">購入先</th>
+            <th scope="col" style="background-color: #e3f2fd;">備考</th>
+            <th class="button-position" scope="col"style="background-color: #e3f2fd;"></th>
+            <th class="button-position" scope="col"style="background-color: #e3f2fd;"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for PurchaserMaster in place_list %}
+          <tr>
+            <td>{{ PurchaserMaster.store_id }}</td>
+            <td>{{ PurchaserMaster.place }}</td>
+            <!--　備考に文字があれば表示なければ何も表示しない　-->
+            {% if PurchaserMaster.note != null %}
+            <td>{{ PurchaserMaster.note }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td><a class="position btn btn-outline-primary btn-sm" href="{% url 'buy:placeup' PurchaserMaster.pk %}">編集</a></td>
+            <td><a class="position btn btn-outline-danger btn-sm" href="{% url 'buy:placedelete' PurchaserMaster.pk %}">削除</a></td>
+            
+          </tr>
+        {% endfor %}
+      </table>
+</div>
+
+{% endblock  %}

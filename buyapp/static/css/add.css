@@ -1,0 +1,113 @@
+.appname {
+    font-family: "Courier New";
+    text-align: center;
+    color: black;
+    margin: 20px 0px 20px;
+    text-shadow: 1px 2px 3px black;
+}
+
+.Store{
+    position: relative;
+    left: 450px;
+}
+
+
+.ItemColumn{
+    position: relative;
+    left: 450px;
+}
+
+.need::after{
+    content: "必須";
+    background-color: #e61010;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 10px;
+    padding: 3px 7px;
+    margin: 0px 5px;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.DeptColumn{
+    position: relative;
+    left: 450px;
+}
+
+.DayColumn{
+    position: relative;
+    left: 450px;
+}
+
+.CostColumnBox{
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    position: relative;
+    left: 450px;
+}
+
+input[name='Count']{
+    text-align: right;
+}
+
+input[name='Cost']{
+    text-align: right;
+}
+
+input[name='Total']{
+    text-align: right;
+}
+
+.box{
+    width: 55px;
+}
+
+.UserColumn{
+    position: relative;
+    left: 450px;
+}
+
+.RemarksColumn{
+    position: relative;
+    left: 450px;
+}
+
+.button013 button {
+    background: #eee;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 240px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    z-index:0;
+    border-left: solid 5px #6bb6ff;
+}
+.button013 button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    display: block;
+    background: #6bb6ff;
+    transition: .3s;
+    left:0;
+}
+.button013 button:hover {
+    color: #FFF;
+}
+.button013 button:hover:before {
+    width: 100%;
+    z-index: -1;
+}
